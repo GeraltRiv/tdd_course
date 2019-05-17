@@ -32,3 +32,7 @@ TEST(leapYear, testYear2000ALeap) {
 TEST(leapYear, testYear2020ALeap) {
     ASSERT_EQ(isYearLeap(2020), true);
 }
+
+TEST(leapYear, testYear1800NotALeap) {
+    ASSERT_EQ(isYearLeap(1800), false);
+}
