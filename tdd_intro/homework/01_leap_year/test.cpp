@@ -15,14 +15,10 @@ If your language provides a method in the standard library that does this look-u
 #include <gtest/gtest.h>
 
 bool isYearLeap(int year) {
-    if (year == 1999)
+    if (year%4 == 0)
+        return true;
+    else
         return false;
-    else if (year == 2000) {
-        return true;
-    }
-    else if (year == 2020) {
-        return true;
-    }
 }
 
 TEST(leapYear, testYear1999NotALeap) {
