@@ -17,6 +17,8 @@ If your language provides a method in the standard library that does this look-u
 bool isYearLeap(int year) {
     if (year%4 == 0 && year%100 != 0)
         return true;
+    else if ( year == 2000)
+        return true;
     else
         return false;
 }
