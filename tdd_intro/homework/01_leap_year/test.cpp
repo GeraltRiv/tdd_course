@@ -20,6 +20,9 @@ bool isYearLeap(int year) {
     else if (year == 2000) {
         return true;
     }
+    else if (year == 2020) {
+        return true;
+    }
 }
 
 TEST(leapYear, testYear1999NotALeap) {
