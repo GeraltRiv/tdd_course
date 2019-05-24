@@ -19,7 +19,10 @@ If your language provides a method in the standard library to perform the conver
 
 #include <string>
 
-int getTernaryNumber(std::string number){
+int getTernaryNumber(const std::string& stringNumber){
+    int number = std::stoi( stringNumber );
+    if (number == 0)
+        throw  std::exception();
     return 10;
 }
 
