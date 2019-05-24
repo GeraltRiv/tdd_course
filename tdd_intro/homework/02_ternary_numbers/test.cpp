@@ -16,3 +16,17 @@ The last place in a ternary number is the 1's place. The second to last is the 3
 
 If your language provides a method in the standard library to perform the conversion, pretend it doesn't exist and implement it yourself.
 */
+
+#include <string>
+
+int getTernaryNumber(std::string number){
+    return 0;
+}
+
+
+
+// 1*3^2 + 0*3^1 + 2*3^0
+// 9     + 0     +  1 = 10
+TEST(ternaryNumber, convertNumber102){
+    EXPECT_EQ(10, getTernaryNumber("102"));
+}
