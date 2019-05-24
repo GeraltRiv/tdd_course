@@ -26,14 +26,12 @@ int getTernaryNumber(std::string stringNumber){
     if (number == 0)
         throw  std::exception();
 
+    int sum;
     for (int i = 0; i < stringNumber.length(); i++) {
-
+        sum += std::pow( (charNumbers[i] - '0')*3, (stringNumber.length() - i - 1));
     }
 
-    int a = std::pow((charNumbers[0] - '0')*3, 2);
-    int b = std::pow((charNumbers[1] - '0')*3, 1);
-    int c = std::pow((charNumbers[2] - '0')*3, 0);
-    return a + b + c;
+    return sum;
 
 }
 
@@ -54,8 +52,8 @@ TEST(ternaryNumber, convertNumber211){
     EXPECT_EQ(40, getTernaryNumber("211"));
 }
 
-// 1*3^3 + 0*3^2    + 2*3^1    + 3*3^0
-// 216     + 0     + 6        +  1 = 40
+// 1*3^3 + 0*3^2    + 3*3^1    + 3*3^0
+// 27     + 0     + 9        +  1 = 40
 TEST(ternaryNumber, convertNumber1033){
-    EXPECT_EQ(223, getTernaryNumber("1033"));
+    EXPECT_EQ(37, getTernaryNumber("1033"));
 }
