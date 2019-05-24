@@ -57,3 +57,8 @@ TEST(ternaryNumber, convertNumber211){
 TEST(ternaryNumber, convertNumber1033){
     EXPECT_EQ(37, getTernaryNumber("1033"));
 }
+
+
+TEST(ternaryNumber, convertNumber102012){
+    EXPECT_EQ(463, getTernaryNumber("102012"));
+}
