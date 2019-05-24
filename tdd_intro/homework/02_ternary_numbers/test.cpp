@@ -29,3 +29,7 @@ int getTernaryNumber(std::string number){
 TEST(ternaryNumber, convertNumber102){
     EXPECT_EQ(10, getTernaryNumber("102"));
 }
+
+TEST(ternaryNumber, convertZeroNumber){
+    EXPECT_THROW(getTernaryNumber("0"), std::exception);
+}
