@@ -36,3 +36,9 @@ TEST(ternaryNumber, convertNumber102){
 TEST(ternaryNumber, convertZeroNumber){
     EXPECT_THROW(getTernaryNumber("0"), std::exception);
 }
+
+// 2*3^2 + 1*3^1 + 1*3^0
+// 36     + 3     +  1 = 40
+TEST(ternaryNumber, convertNumber211){
+    EXPECT_EQ(40, getTernaryNumber("211"));
+}
