@@ -19,19 +19,18 @@ If your language provides a method in the standard library to perform the conver
 
 #include <string>
 
-int getTernaryNumber(const std::string& stringNumber){
+int getTernaryNumber(std::string stringNumber){
+    const char* charNumbers = stringNumber.c_str();
     int number = std::stoi( stringNumber );
 
     if (number == 0)
         throw  std::exception();
 
-    if (number == 211) {
+    int a = std::pow((charNumbers[0] - '0')*3, 2);
+    int b = std::pow((charNumbers[1] - '0')*3, 1);
+    int c = std::pow((charNumbers[2] - '0')*3, 0);
+    return a + b + c;
 
-        return std::pow(2*3, 3) + std::pow(1*3, 1) + std::pow(1*3, 0);
-    }
-
-
-    return 10;
 }
 
 
@@ -46,7 +45,7 @@ TEST(ternaryNumber, convertZeroNumber){
 }
 
 // 2*3^2 + 1*3^1 + 1*3^0
-// 216     + 3     +  1 = 220
+// 36     + 3     +  1 = 40
 TEST(ternaryNumber, convertNumber211){
-    EXPECT_EQ(220, getTernaryNumber("211"));
+    EXPECT_EQ(40, getTernaryNumber("211"));
 }
