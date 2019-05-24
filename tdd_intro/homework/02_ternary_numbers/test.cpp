@@ -20,9 +20,8 @@ If your language provides a method in the standard library to perform the conver
 #include <string>
 
 int getTernaryNumber(std::string number){
-    return 0;
+    return 10;
 }
-
 
 
 // 1*3^2 + 0*3^1 + 2*3^0
