@@ -2,59 +2,49 @@
 #include <string>
 
 /*
- * The program should answer "Fizz" if the input number is multiple of 3, Buzz - if you specify a number which is multiple of 5,
- * and FizzBuzz - if the number is a multiple of 3 and 5. In other cases the program should not answer. So, the conditions are:
+ * The program should answer "Fizz" if the input number is multiple of 3, Buzz - if you specify
+ *  a number which is multiple of 5,
+ * and FizzBuzz - if the number is a multiple of 3 and 5. In other cases the program should
+ * not answer. So, the conditions are:
  * a multiple of 3 = Fizz
  * a multiple of 5 = Buzz
  * a multiple of 15 = FizzBuzz
  * any other number = <nothing>
 */
 
-std::string FizzBuzz(size_t number)
+std::string FizzBuzz(int n)
 {
-    std::string answer;
-    if (number % 3 == 0)
-    {
-        answer += "Fizz";
-    }
-    if (number % 5 == 0)
-    {
-        answer += "Buzz";
-    }
-    return answer;
+    std::string result = "";
+
+    if (n%3 == 0)
+        result += "Fizz";
+    if (n%5 == 0)
+        result += "Buzz";
+
+    return result;
 }
 
-TEST(FizzBuzzTest, Fizz)
+TEST(testFizzBuzz, ReturnFizzWhenNumber3)
 {
-    EXPECT_STREQ("Fizz", FizzBuzz(3).c_str());
+    ASSERT_EQ(FizzBuzz(3), "Fizz");
 }
 
-TEST(FizzBuzzTest, Buzz)
+TEST(testFizzBuzz, ReturnFizzWhenNumber6)
 {
-    EXPECT_STREQ("Buzz", FizzBuzz(5).c_str());
+    ASSERT_EQ(FizzBuzz(6), "Fizz");
 }
 
-TEST(FizzBuzzTest, Empty)
+TEST(testFizzBuzz, ReturnBuzzWhenNumber5)
 {
-    EXPECT_STREQ("", FizzBuzz(1).c_str());
+    ASSERT_EQ(FizzBuzz(5), "Buzz");
 }
 
-TEST(FizzBuzzTest, FizzBuzz)
+TEST(testFizzBuzz, ReturnFizzBuzzWhen15)
 {
-    EXPECT_STREQ("FizzBuzz", FizzBuzz(15).c_str());
+    ASSERT_EQ(FizzBuzz(15), "FizzBuzz");
 }
 
-TEST(FizzBuzzTest, Acceptance)
+TEST(testFizzBuzz, returnEmptyWhenNotDivisibleeBy3or5)
 {
-    EXPECT_STREQ("", FizzBuzz(2).c_str());
-    EXPECT_STREQ("", FizzBuzz(71).c_str());
-    EXPECT_STREQ("", FizzBuzz(1111).c_str());
-
-    EXPECT_STREQ("Fizz", FizzBuzz(6).c_str());
-    EXPECT_STREQ("Fizz", FizzBuzz(99).c_str());
-    EXPECT_STREQ("Fizz", FizzBuzz(363).c_str());
-
-    EXPECT_STREQ("FizzBuzz", FizzBuzz(30).c_str());
-    EXPECT_STREQ("FizzBuzz", FizzBuzz(120).c_str());
-    EXPECT_STREQ("FizzBuzz", FizzBuzz(3300).c_str());
+    ASSERT_EQ(FizzBuzz(322), "");
 }

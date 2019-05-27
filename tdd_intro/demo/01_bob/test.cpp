@@ -1,10 +1,7 @@
 /*
 Bob answers 'Sure.' if you ask him a question. (? in the end)
-
 He answers 'Whoa, chill out!' if you yell at him. (! in the end)
-
 He says 'Fine. Be that way!' if you address him without actually saying anything.
-
 He answers 'Whatever.' to anything else.
 */
 #include <gtest/gtest.h>
@@ -14,45 +11,65 @@ static const char* s_whateverAnswer = "Whatever.";
 static const char* s_sureAnswer = "Sure.";
 static const char* s_fineAnswer = "Fine. Be that way!";
 static const char* s_chillOutAnswer = "Whoa, chill out!";
-
-const char* TellToBob(const std::string& message)
+char getLastSymbolForNonEmptyString(const std::string& str)
 {
-    if (message.empty())
+    return str.at(str.size() - 1);
+}
+
+std::string sayBob(const std::string& query)
+{
+    std::string result;
+    if (query.empty())
     {
-        return s_fineAnswer;
+        result = s_fineAnswer;
     }
-    if (message.back() == '?')
+    else if (getLastSymbolForNonEmptyString(query) == '!')
     {
-        return s_sureAnswer;
+        result = s_chillOutAnswer;
     }
-    else if (message.back() == '!')
+    else if (getLastSymbolForNonEmptyString(query) == '?')
     {
-        return s_chillOutAnswer;
+        result = s_sureAnswer;
     }
-    return s_whateverAnswer;
+    else
+    {
+        result = s_whateverAnswer;
+    }
+
+    return result;
 }
 
-TEST(Bob, Whatever)
+TEST(test_Bob, onQuestionsBobAnswersSure)
 {
-    ASSERT_STREQ(s_whateverAnswer, TellToBob("My name is Todd"));
+    ASSERT_EQ(sayBob("How are you?"), s_sureAnswer);
 }
 
-TEST(Bob, Sure)
+TEST(test_Bob, onYellAtBobAnswerIsChillOut)
 {
-    ASSERT_STREQ(s_sureAnswer, TellToBob("Are you robot?"));
+    ASSERT_EQ(sayBob("WTF!"), s_chillOutAnswer);
 }
 
-TEST(Bob, Sure2)
+TEST(test_Bob, onSayNothingAnswerShouldBeFine)
 {
-    ASSERT_STREQ(s_sureAnswer, TellToBob("You Bob?"));
+    ASSERT_EQ(sayBob(""), s_fineAnswer);
 }
 
-TEST(Bob, Fine)
+TEST(test_Bob, whatIsYourNameAnswersSure)
 {
-    ASSERT_STREQ(s_fineAnswer, TellToBob(""));
+    ASSERT_EQ(sayBob("What is your name?"), s_sureAnswer);
 }
 
-TEST(Bob, ChillOut)
+TEST(test_Bob, claimSignAnswerChillOut)
 {
-    ASSERT_STREQ(s_chillOutAnswer, TellToBob("Answer something different!"));
+    ASSERT_EQ(sayBob("!"), s_chillOutAnswer);
+}
+
+TEST(test_Bob, questionMarkAnswerSure)
+{
+    ASSERT_EQ(sayBob("?"), s_sureAnswer);
+}
+
+TEST(test_Bob, simpleSentenceBobAnswersWhatever)
+{
+    ASSERT_EQ(sayBob("hey bob."), s_whateverAnswer);
 }
