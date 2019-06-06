@@ -200,7 +200,9 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
 // check  1 digit symbols equal number 1
 // chek 3 digit symbol equal number 3
 // check 9 digit == 9
-
+// check array of 2 digits 3 and 1 equals number 31
+// check array of 3 digits 7 5 6 equals 756
+// check array of 5 digits eqauls correct number
 
 
 
