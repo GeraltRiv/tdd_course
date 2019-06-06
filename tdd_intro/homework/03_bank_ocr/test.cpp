@@ -195,3 +195,13 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
                                      "  | _| _||_||_ |_   ||_||_|",
                                      "  ||_  _|  | _||_|  ||_| _|"
 };
+// Test plan
+// Check numbers
+// check  1 digit symbols equal number 1
+// chek 3 digit symbol equal number 3
+// check 9 digit == 9
+
+
+
+
+
