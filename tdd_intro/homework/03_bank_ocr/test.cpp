@@ -260,6 +260,12 @@ TEST(checkDigitArray, checkDigit2And3)
     ASSERT_EQ(convertArrayOfDigitToInt(arrayOfDigits), 23);
 }
 
+TEST(checkDigitArray, checkDigit7And5And6)
+{
+    std::vector<Digit> arrayOfDigits = {{s_digit7}, {s_digit5}, {s_digit6} };
+    ASSERT_EQ(convertArrayOfDigitToInt(arrayOfDigits), 756);
+}
+
 
 
 
