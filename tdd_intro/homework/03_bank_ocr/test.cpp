@@ -229,6 +229,10 @@ int convertDigitToint(Digit digit) {
 
 }
 
+int convertArrayOfDigitToInt(Digit arrayOfDigits []) {
+    return 0;
+}
+
 TEST(checkDigit, checkDigit1)
 {
     ASSERT_EQ(convertDigitToint(s_digit0), 0);
@@ -242,6 +246,12 @@ TEST(checkDigit, checkDigit3)
 TEST(checkDigit, checkDigit9)
 {
     ASSERT_EQ(convertDigitToint(s_digit9), 9);
+}
+
+TEST(checkDigitArray, checkDigit2And3)
+{
+    Digit arrayOfNumber[] = {{s_digit2}, {s_digit3}};
+    ASSERT_EQ(convertArrayOfDigitToInt(arrayOfNumber), 23);
 }
 
 
