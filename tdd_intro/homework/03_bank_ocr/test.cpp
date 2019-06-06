@@ -222,6 +222,8 @@ bool checkIfTwoDigitEquals(Digit digit1, Digit digit2){
 int convertDigitToint(Digit digit) {
     if (checkIfTwoDigitEquals(digit, s_digit0))
         return 0;
+    if (checkIfTwoDigitEquals(digit, s_digit2))
+        return 2;
     if (checkIfTwoDigitEquals(digit, s_digit3))
         return 3;
     if (checkIfTwoDigitEquals(digit, s_digit9))
@@ -230,11 +232,11 @@ int convertDigitToint(Digit digit) {
 }
 
 int convertArrayOfDigitToInt(std::vector<Digit> arrayOfDigits) {
-
+    std::string strNumbers = "";
     for (int i = 0; i < arrayOfDigits.size(); i++) {
-
+        strNumbers += std::to_string(convertDigitToint(arrayOfDigits.at(i)));
     }
-    return 0;
+    return std::stoi(strNumbers);
 }
 
 TEST(checkDigit, checkDigit1)
