@@ -203,6 +203,17 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
 // check array of 2 digits 3 and 1 equals number 31
 // check array of 3 digits 7 5 6 equals 756
 // check array of 5 digits eqauls correct number
+std::map<int, Digit> mapOfDigitsAndInt = {{0, s_digit0},
+                                          {1, s_digit1},
+                                          {2, s_digit2},
+                                          {3, s_digit3},
+                                          {4, s_digit4},
+                                          {5, s_digit5},
+                                          {6, s_digit6},
+                                          {7, s_digit7},
+                                          {8, s_digit8},
+                                          {9, s_digit9},
+                                         };
 
 bool checkIfTwoDigitEquals(Digit digit1, Digit digit2){
     int equalCounter = 0;
@@ -220,15 +231,10 @@ bool checkIfTwoDigitEquals(Digit digit1, Digit digit2){
 }
 
 int convertDigitToint(Digit digit) {
-    if (checkIfTwoDigitEquals(digit, s_digit0))
-        return 0;
-    if (checkIfTwoDigitEquals(digit, s_digit2))
-        return 2;
-    if (checkIfTwoDigitEquals(digit, s_digit3))
-        return 3;
-    if (checkIfTwoDigitEquals(digit, s_digit9))
-        return 9;
-
+    for (auto const x : mapOfDigitsAndInt) {
+        if (checkIfTwoDigitEquals(digit, x.second))
+            return x.first;
+    }
 }
 
 int convertArrayOfDigitToInt(std::vector<Digit> arrayOfDigits) {
