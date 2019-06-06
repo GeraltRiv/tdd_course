@@ -205,7 +205,8 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
 // check array of 5 digits eqauls correct number
 
 int convertDigitToint(Digit digit) {
-     return 3;
+    if (digit.lines[0] == " _ ")
+         return 0;
 }
 
 TEST(checkDigit, checkDigit1)
