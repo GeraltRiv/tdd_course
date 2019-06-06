@@ -204,36 +204,29 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
 // check array of 3 digits 7 5 6 equals 756
 // check array of 5 digits eqauls correct number
 
+bool checkIfTwoDigitEquals(Digit digit1, Digit digit2){
+    int equalCounter = 0;
+    for (int i =0; i < digit1.lines->size(); i++) {
+        if (digit1.lines[i] == digit2.lines[i])
+            equalCounter++;
+        else
+            break;
+    }
+    if (equalCounter == 3)
+        return true;
+    else
+        return false;
+
+}
 
 int convertDigitToint(Digit digit) {
-    int equalCounter = 0;
-    for (int i =0; i < digit.lines->size(); i++) {
-        if (digit.lines[i] == s_digit0.lines[i])
-            equalCounter++;
-        else
-            break;
-    }
-    if (equalCounter == 3)
+    if (checkIfTwoDigitEquals(digit, s_digit0))
         return 0;
-
-    equalCounter = 0;
-    for (int i =0; i < digit.lines->size(); i++) {
-        if (digit.lines[i] == s_digit3.lines[i])
-            equalCounter++;
-        else
-            break;
-    }
-    if (equalCounter == 3)
+    if (checkIfTwoDigitEquals(digit, s_digit3))
         return 3;
-    equalCounter = 0;
-    for (int i =0; i < digit.lines->size(); i++) {
-        if (digit.lines[i] == s_digit9.lines[i])
-            equalCounter++;
-        else
-            break;
-    }
-    if (equalCounter == 3)
+    if (checkIfTwoDigitEquals(digit, s_digit9))
         return 9;
+
 }
 
 TEST(checkDigit, checkDigit1)
