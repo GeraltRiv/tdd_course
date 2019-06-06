@@ -214,6 +214,11 @@ TEST(checkDigit, checkDigit1)
     ASSERT_EQ(convertDigitToint(s_digit0), 0);
 }
 
+TEST(checkDigit, checkDigit3)
+{
+    ASSERT_EQ(convertDigitToint(s_digit3), 3);
+}
+
 
 
 
