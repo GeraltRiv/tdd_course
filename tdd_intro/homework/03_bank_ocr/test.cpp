@@ -229,7 +229,11 @@ int convertDigitToint(Digit digit) {
 
 }
 
-int convertArrayOfDigitToInt(Digit arrayOfDigits []) {
+int convertArrayOfDigitToInt(std::vector<Digit> arrayOfDigits) {
+
+    for (int i = 0; i < arrayOfDigits.size(); i++) {
+
+    }
     return 0;
 }
 
@@ -250,8 +254,8 @@ TEST(checkDigit, checkDigit9)
 
 TEST(checkDigitArray, checkDigit2And3)
 {
-    Digit arrayOfNumber[] = {{s_digit2}, {s_digit3}};
-    ASSERT_EQ(convertArrayOfDigitToInt(arrayOfNumber), 23);
+    std::vector<Digit> arrayOfDigits = {{s_digit2}, {s_digit3}};
+    ASSERT_EQ(convertArrayOfDigitToInt(arrayOfDigits), 23);
 }
 
 
