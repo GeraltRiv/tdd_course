@@ -204,6 +204,15 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
 // check array of 3 digits 7 5 6 equals 756
 // check array of 5 digits eqauls correct number
 
+int convertDigitToint(Digit digit) {
+     return 3;
+}
+
+TEST(checkDigit, checkDigit1)
+{
+    ASSERT_EQ(convertDigitToint(s_digit0), 0);
+}
+
 
 
 
