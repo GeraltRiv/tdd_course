@@ -37,7 +37,7 @@ such: 1
 #include <vector>
 
 std::vector<std::string> cutToWords(std::string str) {
-    return {""};
+    return {str};
 }
 
 TEST(cutString, oneWordToVector) {
