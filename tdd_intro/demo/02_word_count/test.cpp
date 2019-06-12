@@ -37,7 +37,14 @@ such: 1
 #include <vector>
 
 std::vector<std::string> cutToWords(std::string str) {
-    return {str};
+    std::vector<std::string> returnVector;
+    if (str.find(" ") != std::string::npos) {
+        returnVector.push_back(str.substr(0, str.find(" ")));
+        returnVector.push_back(str.substr(str.find(" ") + 1));
+    } else {
+        returnVector.push_back(str);
+    }
+    return returnVector;
 }
 
 TEST(cutString, oneWordToVector) {
