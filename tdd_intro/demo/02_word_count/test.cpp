@@ -37,10 +37,14 @@ such: 1
 #include <vector>
 
 std::vector<std::string> cutToWords(std::string str) {
+    std::vector<std::string> punctualSymbols = {" ", ","};
     std::vector<std::string> returnVector;
-    size_t index = str.find(" ");
-    if (index == std::string::npos)
-        index = str.find(",");
+    size_t index = std::string::npos;
+    for (auto punctual: punctualSymbols) {
+        index = str.find(punctual);
+        if (index != std::string::npos)
+            break;
+    }
     if (index != std::string::npos) {
         returnVector.push_back(str.substr(0, index));
         returnVector.push_back(str.substr(index + 1));
