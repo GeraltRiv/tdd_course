@@ -60,3 +60,9 @@ TEST(cutString, twoWordsToVectorSpace) {
     ASSERT_EQ(cutToWords(str), strVector );
 }
 
+TEST(cutString, twoWordsToVectorComa) {
+    std::string str = "developer,pizza";
+    std::vector<std::string> strVector = {"developer", "pizza"};
+    ASSERT_EQ(cutToWords(str), strVector );
+}
+
