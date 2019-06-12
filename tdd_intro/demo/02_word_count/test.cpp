@@ -39,6 +39,8 @@ such: 1
 std::vector<std::string> cutToWords(std::string str) {
     std::vector<std::string> returnVector;
     size_t index = str.find(" ");
+    if (index == std::string::npos)
+        index = str.find(",");
     if (index != std::string::npos) {
         returnVector.push_back(str.substr(0, index));
         returnVector.push_back(str.substr(index + 1));
