@@ -13,6 +13,24 @@ manner: 1
 such: 1
 */
 
+//Test plan
+//
+// Cut string line into vector of words
+//
+//1. Send one word, result vector of one string
+//2. Send two words with space, result vector of 2 strings
+//3. Send two words with ,  == 2 string vector
+//4. Send three words with . == 3 string vector
+//5. Send 2 words . and space result 2 string vector
+//
+// Calculate words and add it to map
+//
+//1. Send olly get olly : 1 whitespace
+//2. Send pig olly restult pig : 1  olly : 1
+//3. Send olly olly result olly:2
+//4. send olly pig olly blue result olly:2   pig:1 blue:1
+//5. send blue olly pig olly olly blue result olly:3   pig:1 blue:2
+
 #include <gtest/gtest.h>
 #include <string>
 #include <map>
