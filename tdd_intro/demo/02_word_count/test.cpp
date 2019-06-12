@@ -34,4 +34,15 @@ such: 1
 #include <gtest/gtest.h>
 #include <string>
 #include <map>
+#include <vector>
+
+std::vector<std::string> cutToWords(std::string str) {
+    return {""};
+}
+
+TEST(cutString, oneWordToVector) {
+    std::string str = "developer";
+    std::vector<std::string> strVector = {"developer"};
+    ASSERT_EQ(cutToWords(str), strVector );
+}
 
