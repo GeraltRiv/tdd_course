@@ -41,7 +41,6 @@ std::vector<std::string> cutToWords(std::string str) {
     std::vector<std::string> returnVector;
     size_t index = std::string::npos;
     do {
-
         for (auto punctual: punctualSymbols) {
             index = str.find(punctual);
             if (index != std::string::npos)
@@ -56,6 +55,10 @@ std::vector<std::string> cutToWords(std::string str) {
         }
     } while (str != "");
     return returnVector;
+}
+
+std::map<int, std::string> wordCount(std::string str) {
+    return {{1, ""}};
 }
 
 TEST(cutString, oneWordToVector) {
@@ -80,5 +83,11 @@ TEST(cutString, threeWordsToVectorpoint) {
     std::string str = "developer.pizza.ocean";
     std::vector<std::string> strVector = {"developer", "pizza", "ocean"};
     ASSERT_EQ(cutToWords(str), strVector );
+}
+
+TEST(calculateWords, sendOlly) {
+    std::string str = "olly";
+    std::map<int, std::string> map = {{1, "olly"}};
+    ASSERT_EQ(wordCount(str), map );
 }
 
