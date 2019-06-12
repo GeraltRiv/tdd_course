@@ -46,3 +46,9 @@ TEST(cutString, oneWordToVector) {
     ASSERT_EQ(cutToWords(str), strVector );
 }
 
+TEST(cutString, twoWordsToVectorSpace) {
+    std::string str = "developer pizza";
+    std::vector<std::string> strVector = {"developer", "pizza"};
+    ASSERT_EQ(cutToWords(str), strVector );
+}
+
