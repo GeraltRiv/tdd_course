@@ -129,3 +129,11 @@ TEST(calculateWords, sendOllyTwice) {
     ASSERT_EQ(wordCount(str), map );
 }
 
+
+TEST(calculateWords, sendOllyTwiceAndPig) {
+    std::string str = "olly pig olly";
+    std::map<int, std::string> map = {{2, "olly"}, {1, "pig"}};
+    ASSERT_EQ(wordCount(str), map );
+}
+
+
