@@ -57,12 +57,33 @@ std::vector<std::string> cutToWords(std::string str) {
     return returnVector;
 }
 
+void eraseMatchWords(std::string match, std::vector<std::string> *words) {
+    std::vector<int> indexesToErase;
+    for (int i = 0; i < words->size(); i++) {
+        std::string strWord = words->at(i);
+        if (match == strWord) {
+            words->erase(words->begin() + i);
+            eraseMatchWords(match, words);
+        }
+    }
+}
+
 std::map<int, std::string> wordCount(std::string str) {
     std::map<int, std::string> returnMap;
     std::vector<std::string> words = cutToWords(str);
-    for (auto strWord : words) {
-        returnMap.insert({1, strWord});
-    }
+    do {
+        int counter = 0;
+        std::string matchWord = words.at(0);
+        for (int i = 0; i < words.size(); i++) {
+            std::string strWord = words.at(i);
+            if (strWord == matchWord) {
+                counter++;
+            }
+        }
+        eraseMatchWords(matchWord, &words);
+        returnMap.insert({counter, matchWord});
+    } while (words.size() != 0) ;
+
     return returnMap;
 }
 
@@ -103,7 +124,7 @@ TEST(calculateWords, sendPigOlly) {
 }
 
 TEST(calculateWords, sendOllyTwice) {
-    std::string str = "olly pig";
+    std::string str = "olly olly";
     std::map<int, std::string> map = {{2, "olly"}};
     ASSERT_EQ(wordCount(str), map );
 }
