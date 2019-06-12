@@ -58,7 +58,12 @@ std::vector<std::string> cutToWords(std::string str) {
 }
 
 std::map<int, std::string> wordCount(std::string str) {
-    return {{1, ""}};
+    std::map<int, std::string> returnMap;
+    std::vector<std::string> words = cutToWords(str);
+    for (auto strWord : words) {
+        returnMap.insert({1, strWord});
+    }
+    return returnMap;
 }
 
 TEST(cutString, oneWordToVector) {
@@ -88,6 +93,12 @@ TEST(cutString, threeWordsToVectorpoint) {
 TEST(calculateWords, sendOlly) {
     std::string str = "olly";
     std::map<int, std::string> map = {{1, "olly"}};
+    ASSERT_EQ(wordCount(str), map );
+}
+
+TEST(calculateWords, sendPigOlly) {
+    std::string str = "olly pig";
+    std::map<int, std::string> map = {{1, "olly"}, {1, "pig"}};
     ASSERT_EQ(wordCount(str), map );
 }
 
