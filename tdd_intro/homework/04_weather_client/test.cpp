@@ -143,7 +143,16 @@ public:
     }
 
     double GetMaximumTemperature(IWeatherServer& server, const std::string& date) {
-        return 0;
+        int resultMax = 0;
+        std::vector<int> tempList;
+        tempList.push_back(getTemp(server.GetWeather(date+";03:00")));
+        tempList.push_back(getTemp(server.GetWeather(date+";09:00")));
+        tempList.push_back(getTemp(server.GetWeather(date+";15:00")));
+        tempList.push_back(getTemp(server.GetWeather(date+";21:00")));
+        auto result = std::max_element(std::begin(tempList), std::end(tempList));
+        if (std::end(tempList)!=result)
+            resultMax = *result;
+        return resultMax;
     }
     double GetAverageWindDirection(IWeatherServer& server, const std::string& date) {
         return 0;
