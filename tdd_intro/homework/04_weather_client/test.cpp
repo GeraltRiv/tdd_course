@@ -120,6 +120,14 @@ public:
 
 class WeatherClient : public IWeatherClient {
 
+private:
+    void initVector(std::vector<int>* tempList, IWeatherServer& server, const std::string& date ){
+        tempList->push_back(getTemp(server.GetWeather(date+";03:00")));
+        tempList->push_back(getTemp(server.GetWeather(date+";09:00")));
+        tempList->push_back(getTemp(server.GetWeather(date+";15:00")));
+        tempList->push_back(getTemp(server.GetWeather(date+";21:00")));
+    }
+
 public:
     WeatherClient(IWeatherServer* weatherServer){
         this->weatherServer = weatherServer;
@@ -132,10 +140,7 @@ public:
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date) {
         int resultMin = 0;
         std::vector<int> tempList;
-        tempList.push_back(getTemp(server.GetWeather(date+";03:00")));
-        tempList.push_back(getTemp(server.GetWeather(date+";09:00")));
-        tempList.push_back(getTemp(server.GetWeather(date+";15:00")));
-        tempList.push_back(getTemp(server.GetWeather(date+";21:00")));
+        initVector(&tempList, server, date);
         auto result = std::min_element(std::begin(tempList), std::end(tempList));
         if (std::end(tempList)!=result)
             resultMin = *result;
@@ -145,10 +150,7 @@ public:
     double GetMaximumTemperature(IWeatherServer& server, const std::string& date) {
         int resultMax = 0;
         std::vector<int> tempList;
-        tempList.push_back(getTemp(server.GetWeather(date+";03:00")));
-        tempList.push_back(getTemp(server.GetWeather(date+";09:00")));
-        tempList.push_back(getTemp(server.GetWeather(date+";15:00")));
-        tempList.push_back(getTemp(server.GetWeather(date+";21:00")));
+        initVector(&tempList, server, date);
         auto result = std::max_element(std::begin(tempList), std::end(tempList));
         if (std::end(tempList)!=result)
             resultMax = *result;
