@@ -281,6 +281,12 @@ TEST(CalculateAverageTemp, getAverageTemp02Date) {
     ASSERT_EQ(client->GetAverageTemperature(*server, "02.09.2018"), 26.75);
 }
 
+TEST(CalculateAverageTemp, getAverageTemp01Date) {
+    IWeatherServer* server = new MockWeatherServer();
+    IWeatherClient* client = new WeatherClient(server);
+    ASSERT_EQ(client->GetAverageTemperature(*server, "01.09.2018"), 24);
+}
+
 
 
 
