@@ -134,7 +134,12 @@ public:
     }
 
     double GetAverageTemperature(IWeatherServer& server, const std::string& date) {
-        return 0;
+        double averageTemp = 0;
+        averageTemp += getTemp(server.GetWeather(date+";03:00"));
+        averageTemp += getTemp(server.GetWeather(date+";09:00"));
+        averageTemp += getTemp(server.GetWeather(date+";15:00"));
+        averageTemp += getTemp(server.GetWeather(date+";21:00"));
+        return averageTemp/4;
     }
 
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date) {
