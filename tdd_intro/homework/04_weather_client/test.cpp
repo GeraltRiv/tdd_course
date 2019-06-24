@@ -102,7 +102,9 @@ int getTemp(const std::string& request) {
 }
 
 int getWindDirection(const std::string& request) {
-    return 10;
+    std::string substr = request.substr(request.find(';') + 1).substr(0, ';');
+    int result = std::atoi(substr.c_str());
+    return result;
 }
 
 TEST(TemparatureParse, getTemparature3h) {
