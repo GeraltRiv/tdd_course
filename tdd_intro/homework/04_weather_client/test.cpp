@@ -72,6 +72,13 @@ public:
     virtual std::string GetWeather(const std::string& request) = 0;
 };
 
+class MockWeatherServer : public IWeatherServer{
+
+    std::string GetWeather(const std::string& request) override {
+        return "";
+    }
+};
+
 // Implement this interface
 class IWeatherClient
 {
@@ -83,5 +90,10 @@ public:
     virtual double GetAverageWindDirection(IWeatherServer& server, const std::string& date) = 0;
     virtual double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date) = 0;
 };
+
+TEST(TemparatureParse, getTemparature3h) {
+    IWeatherServer* server = new MockWeatherServer();
+    ASSERT_EQ(server->GetWeather("31.08.2018;03:00"), "20;181;5.1");
+}
 
 
