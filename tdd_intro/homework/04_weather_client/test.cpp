@@ -74,19 +74,6 @@ public:
     virtual std::string GetWeather(const std::string& request) = 0;
 };
 
-//"31.08.2018;09:00" : "23;204;4.9"
-//"31.08.2018;15:00" : "33;193;4.3"
-//"31.08.2018;21:00" : "26;179;4.5"
-
-//"01.09.2018;03:00" : "19;176;4.2"
-//"01.09.2018;09:00" : "22;131;4.1"
-//"01.09.2018;15:00" : "31;109;4.0"
-//"01.09.2018;21:00" : "24;127;4.1"
-
-//"02.09.2018;03:00" : "21;158;3.8"
-//"02.09.2018;09:00" : "25;201;3.5"
-//"02.09.2018;15:00" : "34;258;3.7"
-//"02.09.2018;21:00" : "27;299;4.0"
 class MockWeatherServer : public IWeatherServer{
     std::map<std::string, std::string> serverMap = {{"31.08.2018;03:00", "20;181;5.1"}, {"31.08.2018;15:00", "33;193;4.3"},
                                                     {"31.08.2018;21:00", "26;179;4.5"}, {"01.09.2018;03:00", "19;176;4.2"}};
@@ -108,9 +95,20 @@ public:
     virtual double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date) = 0;
 };
 
+int getTemp(const std::string& request) {
+    return 0;
+}
+
 TEST(TemparatureParse, getTemparature3h) {
     IWeatherServer* server = new MockWeatherServer();
     ASSERT_EQ(server->GetWeather("31.08.2018;03:00"), "20;181;5.1");
+}
+
+TEST(TemparatureParse, getTemparature3hEq20Celsius) {
+    IWeatherServer* server = new MockWeatherServer();
+    std::string srvResponse = server->GetWeather("31.08.2018;03:00");
+    ASSERT_EQ(getTemp(srvResponse), 20);
+
 }
 
 
