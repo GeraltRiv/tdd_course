@@ -185,7 +185,7 @@ TEST(WindSpeedParse, getWindSpeedDate31Time03Eq5point1) {
 TEST(CalculateMinMax, getMinTemp31Date) {
     IWeatherServer* server = new MockWeatherServer();
     IWeatherClient* client = new WeatherClient(server);
-    ASSERT_EQ(client->GetMaximumTemperature(*server, "31.08.2018"), 20);
+    ASSERT_EQ(client->GetMinimumTemperature(*server, "31.08.2018"), 20);
 }
 
 
