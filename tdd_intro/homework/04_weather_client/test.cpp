@@ -149,4 +149,10 @@ TEST(WindSpeedParse, getWindSpeedDate1Time03Eq4point2) {
     ASSERT_EQ(getWindSpeed(srvResponse), 4.2);
 }
 
+TEST(WindSpeedParse, getWindSpeedDate31Time03Eq5point1) {
+    IWeatherServer* server = new MockWeatherServer();
+    std::string srvResponse = server->GetWeather("31.08.2018;15:00");
+    ASSERT_EQ(getWindSpeed(srvResponse), 4.3);
+}
+
 
