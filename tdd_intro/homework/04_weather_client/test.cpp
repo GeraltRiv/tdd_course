@@ -109,7 +109,8 @@ int getWindDirection(const std::string& request) {
 
 double getWindSpeed(const std::string& request) {
     std::string substr = request.substr(request.find(';') + 1).substr(0, ';');
-    int result = std::atoi(substr.c_str());
+    substr = substr.substr(substr.find(';') + 1);
+    double result = std::atof(substr.c_str());
     return result;
 }
 
