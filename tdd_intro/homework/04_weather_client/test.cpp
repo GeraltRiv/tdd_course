@@ -101,6 +101,10 @@ int getTemp(const std::string& request) {
     return result;
 }
 
+int getWindDirection(const std::string& request) {
+    return 10;
+}
+
 TEST(TemparatureParse, getTemparature3h) {
     IWeatherServer* server = new MockWeatherServer();
     ASSERT_EQ(server->GetWeather("31.08.2018;03:00"), "20;181;5.1");
@@ -116,6 +120,12 @@ TEST(TemparatureParse, getTemparature9hEq33Celsius) {
     IWeatherServer* server = new MockWeatherServer();
     std::string srvResponse = server->GetWeather("31.08.2018;15:00");
     ASSERT_EQ(getTemp(srvResponse), 33);
+}
+
+TEST(WindDirectionParse, getTemparature9hEq33Celsius) {
+    IWeatherServer* server = new MockWeatherServer();
+    std::string srvResponse = server->GetWeather("31.08.2018;03:00");
+    ASSERT_EQ(getWindDirection(srvResponse), 181);
 }
 
 
