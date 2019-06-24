@@ -96,7 +96,9 @@ public:
 };
 
 int getTemp(const std::string& request) {
-    return 0;
+    std::string substr = request.substr(0, request.find(';'));
+    int result = std::atoi(substr.c_str());
+    return result;
 }
 
 TEST(TemparatureParse, getTemparature3h) {
