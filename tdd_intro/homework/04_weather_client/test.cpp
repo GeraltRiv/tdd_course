@@ -209,5 +209,12 @@ TEST(CalculateMinMax, getMinTemp01Date) {
     ASSERT_EQ(client->GetMinimumTemperature(*server, "01.09.2018"), 19);
 }
 
+TEST(CalculateMinMax, getMaxTemp31Date) {
+    IWeatherServer* server = new MockWeatherServer();
+    IWeatherClient* client = new WeatherClient(server);
+    ASSERT_EQ(client->GetMaximumTemperature(*server, "31.08.2018"), 33);
+}
+
+
 
 
