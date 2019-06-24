@@ -136,8 +136,6 @@ public:
         tempList.push_back(getTemp(server.GetWeather(date+";09:00")));
         tempList.push_back(getTemp(server.GetWeather(date+";15:00")));
         tempList.push_back(getTemp(server.GetWeather(date+";21:00")));
-//        std::cout << "min element at: " << std::distance(std::begin(tempList), std::min_element(std::begin(tempList), std::end(tempList)));
-        auto min_value = *std::min_element(tempList.begin(),tempList.end());
         auto result = std::min_element(std::begin(tempList), std::end(tempList));
         if (std::end(tempList)!=result)
             resultMin = *result;
