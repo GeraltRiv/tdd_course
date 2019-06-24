@@ -110,7 +110,12 @@ TEST(TemparatureParse, getTemparature3hEq20Celsius) {
     IWeatherServer* server = new MockWeatherServer();
     std::string srvResponse = server->GetWeather("31.08.2018;03:00");
     ASSERT_EQ(getTemp(srvResponse), 20);
+}
 
+TEST(TemparatureParse, getTemparature9hEq33Celsius) {
+    IWeatherServer* server = new MockWeatherServer();
+    std::string srvResponse = server->GetWeather("31.08.2018;15:00");
+    ASSERT_EQ(getTemp(srvResponse), 33);
 }
 
 
