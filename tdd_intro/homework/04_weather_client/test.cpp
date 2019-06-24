@@ -263,10 +263,17 @@ TEST(CalculateMaxWindSpeed, getMaxWindSpeed31Date) {
     IWeatherClient* client = new WeatherClient(server);
     ASSERT_EQ(client->GetMaximumWindSpeed(*server, "31.08.2018"), 5.1);
 }
+
 TEST(CalculateMaxWindSpeed, getMaxWindSpeed02Date) {
     IWeatherServer* server = new MockWeatherServer();
     IWeatherClient* client = new WeatherClient(server);
     ASSERT_EQ(client->GetMaximumWindSpeed(*server, "02.09.2018"), 4.0);
+}
+
+TEST(CalculateAverageTemp, getAverageTemp02Date) {
+    IWeatherServer* server = new MockWeatherServer();
+    IWeatherClient* client = new WeatherClient(server);
+    ASSERT_EQ(client->GetAverageTemperature(*server, "02.09.2018"), 26.75);
 }
 
 
