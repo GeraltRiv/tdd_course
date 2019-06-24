@@ -130,4 +130,10 @@ TEST(WindDirectionParse, getWind3hEq181WindDir) {
     ASSERT_EQ(getWindDirection(srvResponse), 181);
 }
 
+TEST(WindDirectionParse, getWindDate1Time03Eq176WindDir) {
+    IWeatherServer* server = new MockWeatherServer();
+    std::string srvResponse = server->GetWeather("01.09.2018;03:00");
+    ASSERT_EQ(getWindDirection(srvResponse), 176);
+}
+
 
