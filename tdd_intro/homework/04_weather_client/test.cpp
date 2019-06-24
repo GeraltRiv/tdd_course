@@ -95,6 +95,33 @@ public:
     virtual double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date) = 0;
 };
 
+class WeatherClient : public IWeatherClient {
+
+public:
+    WeatherClient(IWeatherServer* weatherServer){
+        this->weatherServer = weatherServer;
+    }
+
+    double GetAverageTemperature(IWeatherServer& server, const std::string& date) {
+        return 0;
+    }
+
+    double GetMinimumTemperature(IWeatherServer& server, const std::string& date) {
+        return 0;
+    }
+
+    double GetMaximumTemperature(IWeatherServer& server, const std::string& date) {
+        return 0;
+    }
+    double GetAverageWindDirection(IWeatherServer& server, const std::string& date) {
+        return 0;
+    }
+    double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date) {
+        return 0;
+    }
+    IWeatherServer* weatherServer;
+};
+
 int getTemp(const std::string& request) {
     std::string substr = request.substr(0, request.find(';'));
     int result = std::atoi(substr.c_str());
@@ -154,5 +181,13 @@ TEST(WindSpeedParse, getWindSpeedDate31Time03Eq5point1) {
     std::string srvResponse = server->GetWeather("31.08.2018;15:00");
     ASSERT_EQ(getWindSpeed(srvResponse), 4.3);
 }
+
+TEST(CalculateMinMax, getMinTemp31Date) {
+    IWeatherServer* server = new MockWeatherServer();
+    IWeatherClient* client = new WeatherClient(server);
+    client->GetMaximumTemperature(*server, "31.08.2018");
+    ASSERT_EQ(client->GetMaximumTemperature(*server, "31.08.2018"), 33);
+}
+
 
 
