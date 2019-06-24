@@ -165,7 +165,16 @@ public:
         return averageWindDir/4;
     }
     double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date) {
-        return 0;
+        double resultMax = 0;
+        std::vector<double> tempList;
+        tempList.push_back(getWindSpeed(server.GetWeather(date+";03:00")));
+        tempList.push_back(getWindSpeed(server.GetWeather(date+";09:00")));
+        tempList.push_back(getWindSpeed(server.GetWeather(date+";15:00")));
+        tempList.push_back(getWindSpeed(server.GetWeather(date+";21:00")));
+        auto result = std::max_element(std::begin(tempList), std::end(tempList));
+        if (std::end(tempList)!=result)
+            resultMax = *result;
+        return resultMax;
     }
     IWeatherServer* weatherServer;
 };
@@ -249,7 +258,7 @@ TEST(CalculateAverageSpeedx, getAverageSpeed31Date) {
     ASSERT_EQ(client->GetAverageWindDirection(*server, "31.08.2018"), 189.25);
 }
 
-TEST(CalculateAverageSpeedx, getMaxWindSpeed31Date) {
+TEST(CalculateMaxWindSpeed, getMaxWindSpeed31Date) {
     IWeatherServer* server = new MockWeatherServer();
     IWeatherClient* client = new WeatherClient(server);
     ASSERT_EQ(client->GetMaximumWindSpeed(*server, "31.08.2018"), 5.1);
