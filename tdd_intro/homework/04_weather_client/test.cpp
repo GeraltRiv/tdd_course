@@ -232,6 +232,12 @@ TEST(CalculateMinMax, getMaxTemp02Date) {
     ASSERT_EQ(client->GetMaximumTemperature(*server, "02.09.2018"), 34);
 }
 
+TEST(CalculateAverageSpeedx, getAverageSpeed02Date) {
+    IWeatherServer* server = new MockWeatherServer();
+    IWeatherClient* client = new WeatherClient(server);
+    ASSERT_EQ(client->GetAverageWindDirection(*server, "02.09.2018"), 229);
+}
+
 
 
 
