@@ -157,7 +157,12 @@ public:
         return resultMax;
     }
     double GetAverageWindDirection(IWeatherServer& server, const std::string& date) {
-        return 0;
+        double averageWindDir = 0;
+        averageWindDir += getWindDirection(server.GetWeather(date+";03:00"));
+        averageWindDir += getWindDirection(server.GetWeather(date+";09:00"));
+        averageWindDir += getWindDirection(server.GetWeather(date+";15:00"));
+        averageWindDir += getWindDirection(server.GetWeather(date+";21:00"));
+        return averageWindDir/4;
     }
     double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date) {
         return 0;
