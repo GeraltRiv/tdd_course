@@ -124,7 +124,7 @@ TEST(TemparatureParse, getTemparature9hEq33Celsius) {
     ASSERT_EQ(getTemp(srvResponse), 33);
 }
 
-TEST(WindDirectionParse, getTemparature9hEq33Celsius) {
+TEST(WindDirectionParse, getWind3hEq181WindDir) {
     IWeatherServer* server = new MockWeatherServer();
     std::string srvResponse = server->GetWeather("31.08.2018;03:00");
     ASSERT_EQ(getWindDirection(srvResponse), 181);
