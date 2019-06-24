@@ -107,6 +107,12 @@ int getWindDirection(const std::string& request) {
     return result;
 }
 
+double getWindSpeed(const std::string& request) {
+    std::string substr = request.substr(request.find(';') + 1).substr(0, ';');
+    int result = std::atoi(substr.c_str());
+    return result;
+}
+
 TEST(TemparatureParse, getTemparature3h) {
     IWeatherServer* server = new MockWeatherServer();
     ASSERT_EQ(server->GetWeather("31.08.2018;03:00"), "20;181;5.1");
@@ -134,6 +140,12 @@ TEST(WindDirectionParse, getWindDate1Time03Eq176WindDir) {
     IWeatherServer* server = new MockWeatherServer();
     std::string srvResponse = server->GetWeather("01.09.2018;03:00");
     ASSERT_EQ(getWindDirection(srvResponse), 176);
+}
+
+TEST(WindSpeedParse, getWindSpeedDate1Time03Eq4point2) {
+    IWeatherServer* server = new MockWeatherServer();
+    std::string srvResponse = server->GetWeather("01.09.2018;03:00");
+    ASSERT_EQ(getWindSpeed(srvResponse), 4.2);
 }
 
 
