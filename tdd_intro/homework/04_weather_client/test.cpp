@@ -66,6 +66,25 @@ IMPORTANT:
 #include <iostream>
 #include <map>
 
+int getTemp(const std::string& request) {
+    std::string substr = request.substr(0, request.find(';'));
+    int result = std::atoi(substr.c_str());
+    return result;
+}
+
+int getWindDirection(const std::string& request) {
+    std::string substr = request.substr(request.find(';') + 1).substr(0, ';');
+    int result = std::atoi(substr.c_str());
+    return result;
+}
+
+double getWindSpeed(const std::string& request) {
+    std::string substr = request.substr(request.find(';') + 1).substr(0, ';');
+    substr = substr.substr(substr.find(';') + 1);
+    double result = std::atof(substr.c_str());
+    return result;
+}
+
 class IWeatherServer
 {
 public:
@@ -75,8 +94,12 @@ public:
 };
 
 class MockWeatherServer : public IWeatherServer{
-    std::map<std::string, std::string> serverMap = {{"31.08.2018;03:00", "20;181;5.1"}, {"31.08.2018;15:00", "33;193;4.3"},
-                                                    {"31.08.2018;21:00", "26;179;4.5"}, {"01.09.2018;03:00", "19;176;4.2"}};
+    std::map<std::string, std::string> serverMap = {{"31.08.2018;03:00", "20;181;5.1"}, {"31.08.2018;09:00", "23;204;4.9"},
+                                                    {"31.08.2018;15:00", "33;193;4.3"}, {"31.08.2018;21:00", "26;179;4.5"},
+                                                    {"01.09.2018;03:00", "19;176;4.2"}, {"01.09.2018;09:00","22;131;4.1"},
+                                                    {"01.09.2018;15:00", "31;109;4.0"}, {"01.09.2018;21:00", "24;127;4.1"},
+                                                    {"02.09.2018;03:00", "21;158;3.8"}, {"02.09.2018;09:00", "25;201;3.5"},
+                                                    {"02.09.2018;15:00", "34;258;3.7"}, {"02.09.2018;21:00", "27;299;4.0"}};
 
     std::string GetWeather(const std::string& request) override {
         return serverMap[request];
@@ -107,7 +130,18 @@ public:
     }
 
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date) {
-        return 0;
+        int resultMin = 0;
+        std::vector<int> tempList;
+        tempList.push_back(getTemp(server.GetWeather(date+";03:00")));
+        tempList.push_back(getTemp(server.GetWeather(date+";09:00")));
+        tempList.push_back(getTemp(server.GetWeather(date+";15:00")));
+        tempList.push_back(getTemp(server.GetWeather(date+";21:00")));
+//        std::cout << "min element at: " << std::distance(std::begin(tempList), std::min_element(std::begin(tempList), std::end(tempList)));
+        auto min_value = *std::min_element(tempList.begin(),tempList.end());
+        auto result = std::min_element(std::begin(tempList), std::end(tempList));
+        if (std::end(tempList)!=result)
+            resultMin = *result;
+        return resultMin;
     }
 
     double GetMaximumTemperature(IWeatherServer& server, const std::string& date) {
@@ -122,24 +156,7 @@ public:
     IWeatherServer* weatherServer;
 };
 
-int getTemp(const std::string& request) {
-    std::string substr = request.substr(0, request.find(';'));
-    int result = std::atoi(substr.c_str());
-    return result;
-}
 
-int getWindDirection(const std::string& request) {
-    std::string substr = request.substr(request.find(';') + 1).substr(0, ';');
-    int result = std::atoi(substr.c_str());
-    return result;
-}
-
-double getWindSpeed(const std::string& request) {
-    std::string substr = request.substr(request.find(';') + 1).substr(0, ';');
-    substr = substr.substr(substr.find(';') + 1);
-    double result = std::atof(substr.c_str());
-    return result;
-}
 
 TEST(TemparatureParse, getTemparature3h) {
     IWeatherServer* server = new MockWeatherServer();
