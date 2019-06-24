@@ -44,6 +44,23 @@ IMPORTANT:
 2. Implement IWeatherClient using fake server.
 */
 
+// Test plan
+// Parse response from server and get temperature
+// 1.Send 1 date/time get response, get temperature 20
+// 2. send 2nd dateTime get Temparature 23
+// get Wind direction
+// 1. 1st request wind 181
+// 2. 2nd request wind 204
+// get windSpeed
+// 1. 3st request wind 4.3
+// 2. 4nd request wind 4.5
+// getMinTemp/MaxTemp
+// 1. Send 4 day times, receive responsec, calculate min
+// 2. Send 4 day times, receive responsec, calculate max
+// getAverageWindDirection
+// 1. Send 4 day times, receive response, calculate averageWind direction
+// getAverageWindSpeed
+// 1. Send 4 day times, receive response, calculate windSpeed
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
@@ -66,3 +83,5 @@ public:
     virtual double GetAverageWindDirection(IWeatherServer& server, const std::string& date) = 0;
     virtual double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date) = 0;
 };
+
+
