@@ -243,6 +243,12 @@ TEST(CalculateAverageSpeedx, getAverageSpeed02Date) {
     ASSERT_EQ(client->GetAverageWindDirection(*server, "02.09.2018"), 229);
 }
 
+TEST(CalculateAverageSpeedx, getAverageSpeed31Date) {
+    IWeatherServer* server = new MockWeatherServer();
+    IWeatherClient* client = new WeatherClient(server);
+    ASSERT_EQ(client->GetAverageWindDirection(*server, "31.08.2018"), 189.25);
+}
+
 
 
 
