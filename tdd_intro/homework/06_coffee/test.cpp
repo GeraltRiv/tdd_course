@@ -16,6 +16,15 @@ Implement worked coffee machine using ISourceOfIngredients to controll the proce
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
+//Test list
+// - setCupSize 100g CoffeMachine.getCupsize = 100g
+// - add water 100g 60C  CofeeMachin.getWaterSize = 100g CofeeMachine.getTemp = 60C
+// - tests for all ingridients
+// .....................................................................................
+// Americano: water & coffee 1:2 or 1:3. Water temp 60C
+// Cappuccino: milk & coffee & milk foam 1:3, 1:3, 1:3. Water temp 80C
+// Latte: milk & coffee & milk foam 1:4, 1:2, 1:4. Water temp 90C
+// Marochino: chocolate & coffee & milk foam, 1:4, 1:4, 1:4 and 1:4 is empty
 
 class ISourceOfIngredients
 {
@@ -30,3 +39,5 @@ public:
     virtual void AddChocolate(int gram) = 0;
     virtual void AddCream(int gram) = 0;
 };
+
+
