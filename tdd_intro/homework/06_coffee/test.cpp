@@ -109,14 +109,19 @@ TEST(CoffeeMachine, addAllIngridients) {
     EXPECT_CALL(*cm, AddCream(20))
         .Times(1)
         .WillRepeatedly(testing::Assign(&cm->cream, 20));
-
+    cm->AddCream(20);
+    cm->AddMilk(20);
+    cm->AddSugar(20);
+    cm->AddMilkFoam(20);
+    cm->AddChocolate(20);
+    cm->AddCoffee(20);
 
     ASSERT_EQ(cm->sugar, 20);
-    ASSERT_EQ(cm->waterSize, 100);
     ASSERT_EQ(cm->milk, 20);
-    ASSERT_EQ(cm->milkFoam, 100);
+    ASSERT_EQ(cm->milkFoam, 20);
     ASSERT_EQ(cm->chocolate, 20);
-    ASSERT_EQ(cm->cream, 100);
+    ASSERT_EQ(cm->cream, 20);
+    ASSERT_EQ(cm->coffee, 20);
 
     testing::Mock::VerifyAndClearExpectations(cm);
 }
