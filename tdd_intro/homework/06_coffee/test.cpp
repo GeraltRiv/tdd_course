@@ -133,14 +133,13 @@ TEST(CoffeeMachine, addAllIngridients) {
 
 TEST(CoffeeMachine, makeAmericano) {
     CoffeeMachine *cm = new CoffeeMachine();
-    cm->makeAmericano();
-    EXPECT_CALL(*cm, AddCoffee(20))
+    EXPECT_CALL(*cm, AddCoffee(25))
         .Times(1)
-        .WillRepeatedly(testing::Assign(&cm->coffee, 20));
+        .WillRepeatedly(testing::Assign(&cm->coffee, 25));
     EXPECT_CALL(*cm, SetCupSize(100))
         .Times(1)
         .WillRepeatedly(testing::Assign(&cm->cupSize, 100));
-
+    cm->makeAmericano();
     ASSERT_EQ(cm->cupSize, 100);
     ASSERT_EQ(cm->waterTemp, 60);
     ASSERT_EQ(cm->waterSize, 75);
