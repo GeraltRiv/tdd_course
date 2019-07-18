@@ -47,15 +47,20 @@ public:
     }
 public:
         int cupSize = 0;
+        int waterTemp = 0;
+        int waterSize = 0;
 
     MOCK_METHOD1(SetCupSize, void(int));
-    MOCK_METHOD2(AddWater, void(int, int));
+//    MOCK_METHOD2(AddWater, void(int, int));
     MOCK_METHOD1(AddSugar, void(int));
     MOCK_METHOD1(AddCoffee, void(int));
     MOCK_METHOD1(AddMilk, void(int));
     MOCK_METHOD1(AddMilkFoam, void(int));
     MOCK_METHOD1(AddChocolate, void(int));
     MOCK_METHOD1(AddCream, void(int));
+    void AddWater(int gram, int waterTemp) {
+
+    }
 };
 
 TEST(CoffeeMachine, setCupSize100) {
@@ -64,10 +69,16 @@ TEST(CoffeeMachine, setCupSize100) {
         .Times(1)
         .WillRepeatedly(testing::Assign(&cm->cupSize, 100));
     cm->SetCupSize(100);
-//        .WillOnce(testing::InvokeWithoutArgs(&cm, ));
     ASSERT_EQ(cm->cupSize, 100);
     testing::Mock::VerifyAndClearExpectations(cm);
 }
 
+TEST(CoffeeMachine, addWater100g60c) {
+    CoffeeMachine *cm = new CoffeeMachine();
 
+    cm->AddWater(100, 60);
+    ASSERT_EQ(cm->waterTemp, 60);
+    ASSERT_EQ(cm->waterSize, 100);
+    testing::Mock::VerifyAndClearExpectations(cm);
+}
 
