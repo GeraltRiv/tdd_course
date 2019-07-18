@@ -40,4 +40,30 @@ public:
     virtual void AddCream(int gram) = 0;
 };
 
+class CoffeeMachine: ISourceOfIngredients {
+public:
+    CoffeeMachine() {
+
+    }
+public:
+        int cupSize = 0;
+
+    MOCK_METHOD1(SetCupSize, void(int));
+    MOCK_METHOD2(AddWater, void(int, int));
+    MOCK_METHOD1(AddSugar, void(int));
+    MOCK_METHOD1(AddCoffee, void(int));
+    MOCK_METHOD1(AddMilk, void(int));
+    MOCK_METHOD1(AddMilkFoam, void(int));
+    MOCK_METHOD1(AddChocolate, void(int));
+    MOCK_METHOD1(AddCream, void(int));
+};
+
+TEST(CoffeeMachine, setCupSize100) {
+    CoffeeMachine *cm = new CoffeeMachine();
+    EXPECT_CALL(*cm, SetCupSize(100))
+        .Times(1)
+        .WillOnce(testing::Return());
+    ASSERT_EQ(cm->cupSize, 100);
+}
+
 
