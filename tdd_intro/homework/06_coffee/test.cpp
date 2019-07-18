@@ -59,7 +59,8 @@ public:
     MOCK_METHOD1(AddChocolate, void(int));
     MOCK_METHOD1(AddCream, void(int));
     void AddWater(int gram, int waterTemp) {
-
+        waterSize = gram;
+        this->waterTemp = waterTemp;
     }
 };
 
