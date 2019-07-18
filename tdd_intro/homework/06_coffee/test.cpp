@@ -62,8 +62,12 @@ TEST(CoffeeMachine, setCupSize100) {
     CoffeeMachine *cm = new CoffeeMachine();
     EXPECT_CALL(*cm, SetCupSize(100))
         .Times(1)
-        .WillOnce(testing::Return());
+        .WillRepeatedly(testing::Assign(&cm->cupSize, 100));
+    cm->SetCupSize(100);
+//        .WillOnce(testing::InvokeWithoutArgs(&cm, ));
     ASSERT_EQ(cm->cupSize, 100);
+    testing::Mock::VerifyAndClearExpectations(cm);
 }
+
 
 
