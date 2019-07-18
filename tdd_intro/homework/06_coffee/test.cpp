@@ -49,6 +49,12 @@ public:
         int cupSize = 0;
         int waterTemp = 0;
         int waterSize = 0;
+        int milk = 0;
+        int sugar = 0;
+        int coffee = 0;
+        int milkFoam = 0;
+        int chocolate = 0;
+        int cream = 0;
 
     MOCK_METHOD1(SetCupSize, void(int));
 //    MOCK_METHOD2(AddWater, void(int, int));
@@ -83,3 +89,34 @@ TEST(CoffeeMachine, addWater100g60c) {
     testing::Mock::VerifyAndClearExpectations(cm);
 }
 
+TEST(CoffeeMachine, addAllIngridients) {
+    CoffeeMachine *cm = new CoffeeMachine();
+    EXPECT_CALL(*cm, AddSugar(20))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->sugar, 20));
+    EXPECT_CALL(*cm, AddCoffee(20))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->coffee, 20));
+    EXPECT_CALL(*cm, AddMilk(20))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->milk, 20));
+    EXPECT_CALL(*cm, AddMilkFoam(20))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->milkFoam, 20));
+    EXPECT_CALL(*cm, AddChocolate(20))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->chocolate, 20));
+    EXPECT_CALL(*cm, AddCream(20))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->cream, 20));
+
+
+    ASSERT_EQ(cm->sugar, 20);
+    ASSERT_EQ(cm->waterSize, 100);
+    ASSERT_EQ(cm->milk, 20);
+    ASSERT_EQ(cm->milkFoam, 100);
+    ASSERT_EQ(cm->chocolate, 20);
+    ASSERT_EQ(cm->cream, 100);
+
+    testing::Mock::VerifyAndClearExpectations(cm);
+}
