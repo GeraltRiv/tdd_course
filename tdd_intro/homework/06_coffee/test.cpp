@@ -88,6 +88,14 @@ public:
         this->AddMilkFoam(40);
         this->AddWater(1, 90);
     }
+
+    void makeMarochino() {
+        this->SetCupSize(140);
+        this->AddCoffee(25);
+        this->AddMilk(75);
+        this->AddMilkFoam(40);
+
+    }
 };
 
 TEST(CoffeeMachine, setCupSize100) {
@@ -207,5 +215,29 @@ TEST(CoffeeMachine, makeLatte) {
     ASSERT_EQ(cm->milk, 75);
     ASSERT_EQ(cm->coffee, 25);
     ASSERT_EQ(cm->waterTemp, 90);
+    testing::Mock::VerifyAndClearExpectations(cm);
+}
+
+
+    TEST(CoffeeMachine, makeMarochino) {
+    CoffeeMachine *cm = new CoffeeMachine();
+    EXPECT_CALL(*cm, AddCoffee(35))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->coffee, 35));
+    EXPECT_CALL(*cm, SetCupSize(140))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->cupSize, 140));
+    EXPECT_CALL(*cm, AddMilk(35))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->milk, 35));
+    EXPECT_CALL(*cm, AddMilkFoam(35))
+        .Times(1)
+        .WillRepeatedly(testing::Assign(&cm->milkFoam, 35));
+    cm->makeMarochino();
+    ASSERT_EQ(cm->cupSize, 140);
+    ASSERT_EQ(cm->milkFoam, 35);
+    ASSERT_EQ(cm->milk, 35);
+    ASSERT_EQ(cm->coffee, 35);
+    ASSERT_EQ(cm->cupSize - cm->milk - cm->milkFoam - cm->coffee, 35);
     testing::Mock::VerifyAndClearExpectations(cm);
 }
