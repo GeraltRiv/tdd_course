@@ -91,9 +91,9 @@ public:
 
     void makeMarochino() {
         this->SetCupSize(140);
-        this->AddCoffee(25);
-        this->AddMilk(75);
-        this->AddMilkFoam(40);
+        this->AddCoffee(35);
+        this->AddMilk(35);
+        this->AddMilkFoam(35);
 
     }
 };
