@@ -86,6 +86,7 @@ public:
         this->AddCoffee(25);
         this->AddMilk(75);
         this->AddMilkFoam(40);
+        this->AddWater(1, 90);
     }
 };
 
